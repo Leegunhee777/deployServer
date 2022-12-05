@@ -11,13 +11,17 @@ import { initSocket } from './connection/socket.js';
 import { db } from './db/database.js';
 import { sequelize } from './db/databaseSequel.js';
 
+const corsOption = {
+  origin: 'http://localhost:3000',
+  optionsSuccessStatus: 200,
+};
 dotenv.config();
 // console.log(process.env);
 const app = express();
 
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
+app.use(cors(corsOption));
 app.use(morgan('tiny'));
 
 app.use('/tweets', tweetsRouter);
